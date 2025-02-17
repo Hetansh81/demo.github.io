@@ -1,18 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
+    const form = document.getElementById("contactForm");
+    const responseMessage = document.getElementById("responseMessage");
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent actual form submission
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault(); // Prevent page reload
 
-        const name = document.getElementById("name").value;
-        const message = document.getElementById("message").value;
+        let formData = new FormData(form);
 
-        if (name.trim() === "" || message.trim() === "") {
-            alert("Please fill in all fields.");
-            return;
-        }
+        let response = await fetch("contact.php", {
+            method: "POST",
+            body: formData
+        });
 
-        alert(`Thank you, ${name}! Your message has been sent.`);
-        form.reset(); // Clear the form
+        let result = await response.text();
+        responseMessage.textContent = result; // Show success or error message
+        form.reset();
     });
 });
