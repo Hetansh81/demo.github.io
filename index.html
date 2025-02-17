@@ -1,4 +1,4 @@
-nsh<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -65,15 +65,22 @@ nsh<!DOCTYPE html>
     <section id="contact">
         <h2>Contact Me</h2>
         <p>Email: hetansh.ai814@gmail.com</p>
-        <form>
+        <form id="contactForm" action="contact.php" method="POST">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
             <label for="message">Message:</label>
             <textarea id="message" name="message" required></textarea>
+            
             <button type="submit">Send</button>
         </form>
+        <p id="responseMessage"></p>
     </section>
     
     <script src="demo.js"></script>
 </body>
 </html>
+
